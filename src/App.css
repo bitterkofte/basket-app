@@ -2,10 +2,27 @@
   text-align: center;
 }
 
-.List, .SG {
+.List, .SG, .input {
   padding: 20px;
 }
 
+.input {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-radius: 15px 15px 0px 0px;
+  background-color: rgb(204, 204, 204);
+}
+
+.SG {
+  border-radius: 0px 0px 15px 15px;
+  background-color: rgb(233, 233, 233);
+}
+
+.List {
+  color: rgb(253,130,23);
+  border-radius: 15px;
+  background-color: rgb(255,244,230);
+}
 
 .App-logo {
   height: 40vmin;

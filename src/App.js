@@ -1,6 +1,6 @@
 import './App.css';
 import {useState} from "react";
-import { Container, SimpleGrid, List, ThemeIcon, Input, Button, Group, Drawer } from '@mantine/core';
+import { Container, SimpleGrid, List, ThemeIcon, Input, Button, Group, Drawer, Indicator } from '@mantine/core';
 import Card from "./components/Card.js";
 import { IconCircleCheck, IconCircleDashed } from '@tabler/icons';
 
@@ -39,12 +39,16 @@ function App() {
   let filteredItems = storeItems.filter((item) => item.name.toLowerCase().indexOf(searchText.toLowerCase()) >= 0);
   return (
     <Container>
-      <Group position='left' align="flex-end" >
+      <Group position='left' align="flex-end" className='input'>
         <Input.Wrapper label="Search...">
           <Input value={searchText} onChange={(e) => setSearchText(e.target.value)}/>
         </Input.Wrapper>
         <Button variant="outline" color="red" onClick={() => setSearchText("") }>Temizle</Button>
-        <Button variant="light" color="orange" onClick={() => setOpen(true)}>Sepet</Button>
+        <Indicator color="orange" label={basketItems.length}
+        inline size={22}>
+          <Button variant="light" color="orange" onClick={() => setOpen(true)}>Sepet</Button>
+        </Indicator>
+        
       </Group>
       <SimpleGrid cols={3} className="SG" >
         {filteredItems.map(({name, src}) => {
@@ -59,6 +63,7 @@ function App() {
       
       <Drawer
         opened={open}
+        className="drawer"
         onClose={() => setOpen(false)}
         title="Basket Items"
         padding="md"
