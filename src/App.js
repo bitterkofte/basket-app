@@ -1,6 +1,6 @@
 import './App.css';
 import {useState} from "react";
-import { Container, SimpleGrid, List, ThemeIcon, Input } from '@mantine/core';
+import { Container, SimpleGrid, List, ThemeIcon, Input, Button, Group } from '@mantine/core';
 import Card from "./components/Card.js";
 import { IconCircleCheck, IconCircleDashed } from '@tabler/icons';
 
@@ -38,9 +38,12 @@ function App() {
   let filteredItems = storeItems.filter((item) => item.name.toLowerCase().indexOf(searchText.toLowerCase()) >= 0);
   return (
     <Container>
-      <Input.Wrapper label="Search...">
-        <Input onChange={(e) => setSearchText(e.target.value)}/>
-      </Input.Wrapper>
+      <Group position='left' align="flex-end" >
+        <Input.Wrapper label="Search...">
+          <Input value={searchText} onChange={(e) => setSearchText(e.target.value)}/>
+        </Input.Wrapper>
+        <Button variant="outline" color="red" onClick={() => setSearchText("") }>Temizle</Button>
+      </Group>
       <SimpleGrid cols={3} className="SG" >
         {filteredItems.map(({name, src}) => {
           return (<Card 
