@@ -6,16 +6,29 @@ import { IconCircleCheck, IconCircleDashed } from '@tabler/icons';
 
 const storeItems = [
   {
-  name: "Çikolata",
+  name: "Mclaren Blue",
+  src: "car-1",
   price: 20
   },
   {
-  name: "Çikolata Kabı",
+  name: "Mclaren Purple",
+  src: "car-2",
   price: 40
   },
   {
-  name: "Çikolata Sosu",
+  name: "Mclaren Orange",
+  src: "car-3",
   price: 30
+  },
+  {
+  name: "Aston Martin",
+  src: "car-4",
+  price: 60
+  },
+  {
+  name: "Ford Mustang",
+  src: "car-5",
+  price: 90
   }
 ]
 
@@ -26,10 +39,11 @@ function App() {
   return (
     <Container>
       <SimpleGrid cols={3} className="SG" >
-        {storeItems.map(({name}) => {
+        {storeItems.map(({name, src}) => {
           return (<Card 
           key={name} 
           name={name}
+          src={src}
           onAdd={() => setBasketItems([...basketItems, {name}])} />
           );
         })}
