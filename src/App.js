@@ -1,8 +1,8 @@
 import './App.css';
 import {useState} from "react";
-import { Container, SimpleGrid, List, ThemeIcon, Input, Button, Group, Drawer, Indicator } from '@mantine/core';
+import { Container, SimpleGrid, List, ThemeIcon, Input, Button, Group, Drawer, Indicator, ActionIcon } from '@mantine/core';
 import Card from "./components/Card.js";
-import { IconCircleCheck, IconCircleDashed } from '@tabler/icons';
+import { IconCircleCheck, IconCircleDashed, IconShoppingCart, IconSettings } from '@tabler/icons';
 
 const storeItems = [
   {
@@ -46,7 +46,7 @@ function App() {
         <Button variant="outline" color="red" onClick={() => setSearchText("") }>Temizle</Button>
         <Indicator color="orange" label={basketItems.length}
         inline size={22}>
-          <Button variant="light" color="orange" onClick={() => setOpen(true)}>Sepet</Button>
+          <Button variant="light" color="orange" onClick={() => setOpen(true)}><IconShoppingCart /></Button>
         </Indicator>
         
       </Group>
