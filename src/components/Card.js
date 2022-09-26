@@ -5,7 +5,8 @@ const CardComponent = ({name, onAdd, src}) => {
         <Card shadow="sm" p="lg" radius="md" withBorder>
         <Card.Section>
           <Image
-            src={"/assets/images/" + src + ".jpg"}
+            //src={"/assets/images/" + src + ".jpg"}
+            src={`/assets/images/${src}.jpg`}
             height={160}
             alt="Norway"
           />
