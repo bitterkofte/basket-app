@@ -1,6 +1,6 @@
 import './App.css';
 import {useState} from "react";
-import { Container, SimpleGrid, List, ThemeIcon, Input, Button, Group } from '@mantine/core';
+import { Container, SimpleGrid, List, ThemeIcon, Input, Button, Group, Drawer } from '@mantine/core';
 import Card from "./components/Card.js";
 import { IconCircleCheck, IconCircleDashed } from '@tabler/icons';
 
@@ -33,6 +33,7 @@ const storeItems = [
 ]
 
 function App() {
+  let [open, setOpen] = useState(false);
   let [basketItems, setBasketItems] = useState([]);
   let [searchText, setSearchText] = useState("");
   let filteredItems = storeItems.filter((item) => item.name.toLowerCase().indexOf(searchText.toLowerCase()) >= 0);
@@ -43,6 +44,7 @@ function App() {
           <Input value={searchText} onChange={(e) => setSearchText(e.target.value)}/>
         </Input.Wrapper>
         <Button variant="outline" color="red" onClick={() => setSearchText("") }>Temizle</Button>
+        <Button variant="light" color="orange" onClick={() => setOpen(true)}>Sepet</Button>
       </Group>
       <SimpleGrid cols={3} className="SG" >
         {filteredItems.map(({name, src}) => {
@@ -55,20 +57,30 @@ function App() {
         })}
       </SimpleGrid>
       
-      <List
-      className='List'
-      spacing="xs"
-      size="sm"
-      center
-      icon={
-        <ThemeIcon color="teal" size={24} radius="xl">
-          <IconCircleCheck size={16} />
-        </ThemeIcon>
-      }
+      <Drawer
+        opened={open}
+        onClose={() => setOpen(false)}
+        title="Basket Items"
+        padding="md"
+        size="md"
       >
-      {basketItems.map(({name}, index) => <List.Item key={index}>{name}</List.Item>
-      )}
-      </List>
+        <List
+        className='List'
+        spacing="xs"
+        size="sm"
+        center
+        icon={
+          <ThemeIcon color="teal" size={24} radius="xl">
+            <IconCircleCheck size={16} />
+          </ThemeIcon>
+        }
+        >
+        {basketItems.map(({name}, index) => <List.Item key={index}>{name}</List.Item>
+        )}
+        </List>
+      </Drawer>
+
+      
     </Container>
   );
 }
